@@ -627,16 +627,6 @@ if __name__ == '__main__':
     print("+++++ load emb_dict ++++")
     coff_path = os.path.join(data_root,"crop_face_3dmm_coff_processed_chazhi")
     coff_dict = load_emb(coff_path)
-    print('+++++ load rig_dict')
-    rig_path = os.path.join(data_root,"exp_rigs_new")
-    rig_dict = load_emb(rig_path)
-    print('++++++ load bs_dict')
-    bs_path = os.path.join(data_root, "crop_face_51bs_chazhi")
-    bs_dict = load_emb(bs_path)
-
-    # coff_dict = bs_dict
-    # emb_dict = rig_dict
-
 
     word_seq = 60
     print('=====> word seq lenth:', word_seq)
@@ -650,11 +640,7 @@ if __name__ == '__main__':
     print(f'data number: training: {Exp_trainset.__len__()}, validation: {Exp_testset.__len__()}')
 
     trainloader = data.DataLoader(trainset, batch_size=bz, num_workers=16,shuffle=True)
-
-    # net = Single_exp_detect(use_mfcc=True,use_wordemb=True,use_exp_emb =True,use_coff=True)
-    # net = Single_exp_detect_trans(use_mfcc=True,use_wordemb=True,use_exp_emb =True,word_emb='bert',
-    #                               use_coff=True,use_feature3=False,)
-    # net = Single_exp_detect_MISA(use_mfcc=True,use_wordemb=True,use_exp_emb =True,use_coff=False)
+    
     net = Single_exp_detect_Eff(use_mfcc=True,use_wordemb=True,use_exp_emb =True,use_coff=True,
                                 use_feature3=True, word_emb='glove', use_bert=False,emb_dim=16, coef_dim=50)
 
